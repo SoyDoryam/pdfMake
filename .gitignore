@@ -11,3 +11,5 @@ package-lock.json
 yarn.lock
 /build
 /js
+
+/dev-playground/public/vendor

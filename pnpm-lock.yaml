@@ -48,6 +48,9 @@ importers:
       eslint-plugin-jsdoc:
         specifier: ^62.9.0
         version: 62.9.0(eslint@10.13.0)
+      events:
+        specifier: ^3.3.0
+        version: 3.3.0
       expose-loader:
         specifier: ^5.0.1
         version: 5.0.1(webpack@5.112.2)

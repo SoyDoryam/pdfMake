@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm run build:browser && pnpm run build:fonts && shx mkdir -p dev-playground/public/vendor && shx cp build/pdfmake.min.js dev-playground/public/vendor/pdfmake.min.js && shx cp build/fonts/Roboto.js dev-playground/public/vendor/Roboto.js",
+  "outputDirectory": "dev-playground/public"
+}
