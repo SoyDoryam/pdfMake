@@ -108,14 +108,16 @@
 
 					var content = editor.getSession().getValue();
 
-					$http.post('/pdf', { content: content }).
-						success(function (data, status, headers, config) {
-
-							document.getElementById('pdfV').src = data;
-						}).
-						error(function (data, status, headers, config) {
-							console.log('ERROR', data);
+					try {
+						var dd = new Function(content + '; return dd;')();
+						pdfMake.createPdf(dd).getDataUrl().then(function (dataUrl) {
+							document.getElementById('pdfV').src = dataUrl;
+						}, function (error) {
+							console.log('ERROR', error);
 						});
+					} catch (error) {
+						console.log('ERROR', error);
+					}
 				}
 			}
 		};
@@ -126,6 +128,8 @@
 	<script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js'></script>
 	<script src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js'></script>
 
+	<script type="text/javascript" src="/vendor/pdfmake.min.js"></script>
+	<script type="text/javascript" src="/vendor/Roboto.js"></script>
 	<script type="text/javascript" src="/playground.js"></script>
 
 	<!--<script type="text/javascript" charset="utf-8" src='ace-builds/src-min/ace.js'></script>-->

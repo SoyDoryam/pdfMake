@@ -24,6 +24,7 @@
     "core-js": "^3.49.0",
     "eslint": "^10.4.1",
     "eslint-plugin-jsdoc": "^62.9.0",
+    "events": "^3.3.0",
     "expose-loader": "^5.0.1",
     "file-saver": "^2.0.5",
     "globals": "^17.6.0",
@@ -56,7 +57,8 @@
     "build:fonts": "shx mkdir -p build/fonts && shx mkdir -p build/fonts/Roboto && shx cp -r fonts/Roboto/*.* build/fonts/Roboto && brfs \"./src/browser-extensions/fonts/Roboto.js\" > build/fonts/Roboto.js",
     "lint": "eslint \"./src/**/*.js\" \"./tests/**/*.js\" \"./examples/**/*.js\" \"./standard-fonts/**/*.js\" \"./fonts/**/*.js\"",
     "mocha": "mocha --reporter spec \"./tests/**/*.spec.js\"",
-    "playground": "node dev-playground/server.js"
+    "playground": "node dev-playground/server.js",
+    "dev": "node dev-playground/static-server.js"
   },
   "repository": {
     "type": "git",
