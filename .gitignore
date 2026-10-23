@@ -13,3 +13,4 @@ yarn.lock
 /js
 
 /dev-playground/public/vendor
+/dev-playground/public/examples
