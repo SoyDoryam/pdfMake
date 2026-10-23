@@ -46,8 +46,9 @@ var server = http.createServer(function (req, res) {
 		pathname = '/index.html';
 	}
 
-	var filePath = path.join(publicDir, path.normalize(pathname));
-	if (filePath.indexOf(publicDir) !== 0) {
+	var baseDir = pathname.indexOf('/examples/') === 0 ? rootDir : publicDir;
+	var filePath = path.join(baseDir, path.normalize(pathname));
+	if (filePath.indexOf(baseDir) !== 0) {
 		res.writeHead(403);
 		res.end('Forbidden');
 		return;
