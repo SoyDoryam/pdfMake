@@ -29,7 +29,7 @@ content: [
 	},
 	'For better customization, add an image and attach a file to it with linkToFile:',
 	{
-		image: 'examples/fonts/sampleImage.jpg',
+		image: 'examples/images/sampleImage.jpg',
 		width: 150,
 		linkToFile: 'sampleImage'
 	},
@@ -45,7 +45,7 @@ content: [
 ],
 attachments: {
 	sampleImage: {
-		src: 'examples/fonts/sampleImage.jpg',
+		src: 'examples/images/sampleImage.jpg',
 		name: 'sampleImage.png'
 	}
 },

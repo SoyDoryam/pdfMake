@@ -103,13 +103,35 @@
 					}, 300);
 				});
 
-				function generate() {
-					lastGen = new Date();
+					// pdfmake in the browser only fetches absolute http(s) URLs, so local sample paths are expanded here
+					// Inline "image" strings are not fetched by pdfmake, so they are registered in the images dictionary.
+					function resolveLocalPaths(node, root) {
+						root = root || node;
+						if (typeof node === 'string') {
+							return /^examples\//.test(node) ? location.origin + '/' + node : node;
+						}
+						if (node && typeof node === 'object') {
+							Object.keys(node).forEach(function (key) {
+								var value = node[key];
+								if (key === 'image' && typeof value === 'string' && /^examples\//.test(value)) {
+									var url = location.origin + '/' + value;
+									root.images = root.images || {};
+									root.images[value] = url;
+									return;
+								}
+								node[key] = resolveLocalPaths(value, root);
+							});
+						}
+						return node;
+					}
+
+					function generate() {
+						lastGen = new Date();
 
 					var content = editor.getSession().getValue();
 
 					try {
-						var dd = new Function(content + '; return dd;')();
+							var dd = resolveLocalPaths(new Function(content + '; return dd;')());
 						pdfMake.createPdf(dd).getDataUrl().then(function (dataUrl) {
 							document.getElementById('pdfV').src = dataUrl;
 						}, function (error) {
